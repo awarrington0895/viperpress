@@ -3,5 +3,15 @@ name = "viperpress"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
+authors = [
+    { name = "Alex Warrington", email = "awarrington0895@gmail.com" }
+]
 requires-python = ">=3.13"
 dependencies = []
+
+[project.scripts]
+viperpress = "viperpress:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
