@@ -10,7 +10,7 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-viperpress = "viperpress:main"
+viperpress = "viperpress.main:main"
 
 [build-system]
 requires = ["hatchling"]
