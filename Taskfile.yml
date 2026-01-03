@@ -1,0 +1,17 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  repl:
+    cmds:
+      - uv run ptipython -i repl.py
+    interactive: true
+
+  test:
+    cmds:
+      - sh ./test.sh
+
+  run:
+    cmds:
+      - sh ./main.sh
