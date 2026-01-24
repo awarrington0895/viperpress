@@ -1,5 +1,6 @@
 from viperpress.textnode import TextNode, TextType
 import viperpress.htmlnode as html
+import re
 
 
 class MarkdownSyntaxError(Exception):
@@ -30,6 +31,18 @@ def split_nodes_delimiter(
                 new_nodes.append(TextNode(part, text_type))
 
     return new_nodes
+
+
+def extract_markdown_images(text: str) -> list[tuple[str, str]]:
+    image_pattern = r"!\[([^\[\]]*)\]\(([^\(\)]*)\)"
+
+    return re.findall(pattern=image_pattern, string=text)
+
+
+def extract_markdown_links(text: str) -> list[tuple[str, str]]:
+    link_pattern = r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)"
+
+    return re.findall(pattern=link_pattern, string=text)
 
 
 def text_node_to_html_node(text_node: TextNode):

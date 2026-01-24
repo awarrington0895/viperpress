@@ -28,6 +28,36 @@ class TestTextToHtml(unittest.TestCase):
         self.assertEqual(html_node.props["href"], "https://www.google.com")
 
 
+class TestExtractImages(unittest.TestCase):
+    def test_extract(self):
+        text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+
+        extracted = generator.extract_markdown_images(text)
+
+        self.assertEqual(
+            extracted,
+            [
+                ("rick roll", "https://i.imgur.com/aKaOqIh.gif"),
+                ("obi wan", "https://i.imgur.com/fJRm4Vk.jpeg"),
+            ],
+        )
+
+
+class TestExtractLinks(unittest.TestCase):
+    def test_extract(self):
+        text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+
+        extracted = generator.extract_markdown_links(text)
+
+        self.assertEqual(
+            extracted,
+            [
+                ("to boot dev", "https://www.boot.dev"),
+                ("to youtube", "https://www.youtube.com/@bootdotdev"),
+            ],
+        )
+
+
 class TestSplitter(unittest.TestCase):
     def test_provided(self):
         node = TextNode("This is text with a `code block` word", TextType.Plain)
